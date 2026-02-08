@@ -1,0 +1,119 @@
+
+## Arika Queue
+
+`@arikajs/queue` provides asynchronous job processing for the ArikaJS framework.
+
+It allows applications to defer heavy or time-consuming tasks — such as emails, notifications, or event listeners — to background workers, improving performance and scalability.
+
+---
+
+## ✨ Features
+
+- **Job dispatching**: Easily send tasks to the queue
+- **Background job workers**: Processes jobs offline
+- **Sync & async queue drivers**: Flexible processing modes
+- **Redis-based queue driver (v1)**: Robust, scalable backend support
+- **Queueable events & mail**: Integration with other framework components
+- **Automatic retry handling**: Resilient job execution
+- **TypeScript-first design**: Fully typed API
+
+---
+
+## 📦 Installation
+
+```bash
+npm install @arikajs/queue
+# or
+yarn add @arikajs/queue
+# or
+pnpm add @arikajs/queue
+```
+
+---
+
+## 🚀 Basic Usage
+
+### Dispatching a Job
+
+```ts
+import { Queue } from '@arikajs/queue';
+
+await Queue.dispatch(new SendEmailJob(user));
+```
+
+### Defining a Job
+
+```ts
+export class SendEmailJob {
+  async handle() {
+    // job logic
+  }
+}
+```
+
+---
+
+## 🔁 Queue Drivers (v1)
+
+| Driver | Status |
+| :--- | :--- |
+| Sync | ✅ Supported |
+| Redis | ⏳ Planned |
+| Database | ⏳ Planned |
+
+---
+
+## ⚙️ Configuration
+
+```ts
+export default {
+  default: 'sync',
+
+  connections: {
+    sync: {
+      driver: 'sync'
+    }
+  }
+};
+```
+
+---
+
+## 🔗 Integration
+
+- **`@arikajs/mail`** → queued emails
+- **`@arikajs/events`** → async listeners
+- **`@arikajs/logging`** → job logs
+- **`@arikajs/console`** → worker commands
+
+---
+
+## 🧠 Architecture (High Level)
+
+```
+queue/
+├── src/
+│   ├── QueueManager.ts
+│   ├── Job.ts
+│   ├── Worker.ts
+│   ├── Drivers/
+│   │   └── SyncDriver.ts
+│   └── index.ts
+├── tests/
+├── package.json
+├── tsconfig.json
+├── README.md
+└── LICENSE
+```
+
+---
+
+## 📄 License
+
+`@arikajs/queue` is open-source software licensed under the **MIT License**.
+
+---
+
+## 🧭 Philosophy
+
+> "Fast requests. Slow work in the background."
