@@ -55,11 +55,11 @@ export class SendEmailJob {
 
 ## 🔁 Queue Drivers (v1)
 
-| Driver | Status |
-| :--- | :--- |
-| Sync | ✅ Supported |
-| Redis | ⏳ Planned |
-| Database | ⏳ Planned |
+| Driver | Status | Description |
+| :--- | :--- | :--- |
+| **Sync** | ✅ Supported | Default synchronous driver for local dev |
+| **Database** | ✅ Supported | Stores jobs in your database |
+| **Redis** | ⏳ Planned | Redis-based queue driver |
 
 ---
 
@@ -67,14 +67,31 @@ export class SendEmailJob {
 
 ```ts
 export default {
-  default: 'sync',
+  default: process.env.QUEUE_CONNECTION || 'sync',
 
   connections: {
     sync: {
-      driver: 'sync'
-    }
-  }
+      driver: 'sync',
+    },
+
+    database: {
+      driver: 'database',
+      table: 'jobs',
+      connection: null,
+    },
+  },
 };
+```
+
+---
+
+## 🛠 Database Queue Setup
+
+To use the database driver, you need to create the `jobs` table migration:
+
+```bash
+arika queue:table
+arika migrate
 ```
 
 ---
@@ -97,7 +114,8 @@ queue/
 │   ├── Job.ts
 │   ├── Worker.ts
 │   ├── Drivers/
-│   │   └── SyncDriver.ts
+│   │   ├── SyncDriver.ts
+│   │   └── DatabaseDriver.ts
 │   └── index.ts
 ├── tests/
 ├── package.json

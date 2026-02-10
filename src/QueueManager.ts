@@ -1,13 +1,16 @@
 
 import { Job, QueueDriver } from './Contracts';
 import { SyncDriver } from './Drivers/SyncDriver';
+import { DatabaseDriver } from './Drivers/DatabaseDriver';
 
 export class QueueManager {
     private drivers: Map<string, QueueDriver> = new Map();
     private config: any;
+    private database: any;
 
-    constructor(config: any) {
+    constructor(config: any, database?: any) {
         this.config = config;
+        this.database = database;
     }
 
     public driver(name?: string): QueueDriver {
@@ -30,6 +33,8 @@ export class QueueManager {
         switch (config.driver) {
             case 'sync':
                 return new SyncDriver();
+            case 'database':
+                return new DatabaseDriver(this.database.connection(config.connection), config);
             default:
                 throw new Error(`Unsupported queue driver [${config.driver}].`);
         }
