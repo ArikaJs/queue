@@ -36,9 +36,7 @@
         "url": "https://github.com/arikajs/queue/issues"
     },
     "homepage": "https://github.com/arikajs/queue#readme",
-    "dependencies": {
-        "@arikajs/logging": "file:../logging"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@types/node": "^20.11.24",
         "typescript": "^5.3.3"
