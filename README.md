@@ -59,7 +59,7 @@ export class SendEmailJob {
 | :--- | :--- | :--- |
 | **Sync** | ✅ Supported | Default synchronous driver for local dev |
 | **Database** | ✅ Supported | Stores jobs in your database |
-| **Redis** | ⏳ Planned | Redis-based queue driver |
+| **Redis** | ✅ Supported | Redis-based queue driver (High-performance) |
 
 ---
 

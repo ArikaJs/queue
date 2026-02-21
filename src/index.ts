@@ -20,3 +20,4 @@ export class Queue {
 
 export { QueueManager, Job };
 export { BaseJob } from './Job';
+export { RedisDriver } from './Drivers/RedisDriver';

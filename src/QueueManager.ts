@@ -2,6 +2,7 @@
 import { Job, QueueDriver } from './Contracts';
 import { SyncDriver } from './Drivers/SyncDriver';
 import { DatabaseDriver } from './Drivers/DatabaseDriver';
+import { RedisDriver } from './Drivers/RedisDriver';
 
 export class QueueManager {
     private drivers: Map<string, QueueDriver> = new Map();
@@ -35,6 +36,8 @@ export class QueueManager {
                 return new SyncDriver();
             case 'database':
                 return new DatabaseDriver(this.database.connection(config.connection), config);
+            case 'redis':
+                return new RedisDriver(config);
             default:
                 throw new Error(`Unsupported queue driver [${config.driver}].`);
         }

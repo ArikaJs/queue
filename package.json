@@ -10,8 +10,8 @@
     "build:tests": "tsc -p tsconfig.test.json",
     "clean": "rm -rf dist",
     "prepare": "echo skip",
-    "test": "npm run build && npm run build:tests && node scripts/fix-test-imports.js && node --test 'dist/tests/**/*.test.js'",
-    "test:watch": "npm run build && npm run build:tests && node --test --watch 'dist/tests/**/*.test.js'"
+    "test": "npx tsx --test tests/**/*.test.ts",
+    "test:watch": "npx tsx --test --watch tests/**/*.test.ts"
   },
   "files": [
     "dist"
@@ -36,7 +36,9 @@
     "url": "https://github.com/arikajs/queue/issues"
   },
   "homepage": "https://github.com/arikajs/queue#readme",
-  "dependencies": {},
+  "dependencies": {
+    "ioredis": "^5.9.3"
+  },
   "devDependencies": {
     "@types/node": "^20.11.24",
     "typescript": "^5.3.3"
