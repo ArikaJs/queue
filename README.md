@@ -105,27 +105,6 @@ arika migrate
 
 ---
 
-## 🧠 Architecture (High Level)
-
-```
-queue/
-├── src/
-│   ├── QueueManager.ts
-│   ├── Job.ts
-│   ├── Worker.ts
-│   ├── Drivers/
-│   │   ├── SyncDriver.ts
-│   │   └── DatabaseDriver.ts
-│   └── index.ts
-├── tests/
-├── package.json
-├── tsconfig.json
-├── README.md
-└── LICENSE
-```
-
----
-
 ## 🏗 Architecture
 
 ```text
