@@ -126,6 +126,26 @@ queue/
 
 ---
 
+## 🏗 Architecture
+
+```text
+queue/
+├── src/
+│   ├── Drivers
+│   │   ├── DatabaseDriver.ts
+│   │   ├── RedisDriver.ts
+│   │   └── SyncDriver.ts
+│   ├── Contracts.ts
+│   ├── index.ts
+│   ├── Job.ts
+│   ├── QueueManager.ts
+│   └── Worker.ts
+├── tests/
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
 ## 📄 License
 
 `@arikajs/queue` is open-source software licensed under the **MIT License**.
